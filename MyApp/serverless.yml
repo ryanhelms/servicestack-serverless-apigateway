@@ -1,0 +1,46 @@
+
+service: DemoApi
+ 
+plugins: 
+  - serverless-dotnet 
+ 
+provider: 
+  runtime: dotnetcore2.0 
+  name: aws 
+  timeout: ${s3:${self:custom.globalConfig}/timeout.var} 
+  role: ${s3:${self:custom.globalConfig}/role.var} 
+  logRetentionInDays: 7
+  memorySize: ${s3:${self:custom.globalConfig}/memorySize.var} 
+  deploymentBucket: ${s3:${self:custom.globalConfig}/deploymentBucket.var} 
+  versionFunctions: true
+ 
+custom:
+
+############################################################################################################### 
+# Global variable configuration 
+############################################################################################################### 
+ 
+  globalConfig: ${opt:region, env:AWS_REGION}.config.enumis.co.uk   
+  appConfig: ${self:custom.globalConfig}/${self:service} 
+
+####################################################################################################### 
+# Function definitions 
+####################################################################################################### 
+ 
+functions: 
+
+  ##############################################################################################################################
+  ##############################################################################################################################
+  ##############################################################################################################################
+
+  # -------------------------------------------------------------------------------
+  # ------- Proxy / Catch-All Endpoint --------------------------------------------
+  # -------------------------------------------------------------------------------
+
+  Ping:
+    handler: MyApp::MyApp.APIGatewayProxy::FunctionHandlerAsync
+    events:
+    - http: 
+        path: "/ping"
+        method: any
+        cors: true
