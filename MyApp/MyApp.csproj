@@ -9,8 +9,9 @@
 
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.*" />
-    <PackageReference Include="ServiceStack" Version="5.*" />
+    <PackageReference Include="Enumis.Utilities.Api" Version="3.0.0-unstable0308" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.1" />
+    <PackageReference Include="ServiceStack" Version="5.0.3" />
   </ItemGroup>
 
   <ItemGroup>

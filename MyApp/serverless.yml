@@ -37,10 +37,36 @@ functions:
   # ------- Proxy / Catch-All Endpoint --------------------------------------------
   # -------------------------------------------------------------------------------
 
+  Proxy:
+    handler: MyApp::MyApp.APIGatewayProxy::FunctionHandlerAsync
+    events:
+      - http: 
+          method: any
+          path: "/{proxy+}"
+          cors: true
+
   Ping:
     handler: MyApp::MyApp.APIGatewayProxy::FunctionHandlerAsync
     events:
-    - http: 
-        path: "/ping"
-        method: any
-        cors: true
+      - http: 
+          method: any
+          path: "/ping"
+          cors: true
+          integration: lambda  
+          request:
+            template:
+              application/json: >
+                { "httpMethod" : "$context.httpMethod", "path": "$context.path", "body": "$util.escapeJavaScript($input.body)" }
+          response:
+            headers:
+              Access-Control-Allow-Origin: "'*'"
+              Access-Control-Allow-Credentials: "'true'"
+              Access-Control-Allow-Headers: "'*'"
+              Access-Control-Allow-Methods: "'*'"
+            statusCodes:
+              400:
+                pattern: '.*errorMessage.*'
+                template:
+                  application/json: >
+                    #set ($errorMessageObj = $input.path('$.errorMessage'))
+                    $errorMessageObj

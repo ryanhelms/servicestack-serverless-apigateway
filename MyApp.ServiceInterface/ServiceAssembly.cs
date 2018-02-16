@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyApp.ServiceInterface
+﻿namespace MyApp.ServiceInterface
 {
-    class ServiceAssembly
+    /// <summary>
+    /// Defines the <see cref="ServiceAssembly" /> 
+    /// </summary>
+    internal class ServiceAssembly
     {
     }
 }

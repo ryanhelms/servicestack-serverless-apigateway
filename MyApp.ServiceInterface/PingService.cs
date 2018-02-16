@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.Internal;
-using MyApp.ServiceModel;
-using ServiceStack.Text;
-using ServiceStack.Web;
-
+﻿using MyApp.ServiceModel;
 
 namespace MyApp.ServiceInterface
 {
@@ -10,21 +6,21 @@ namespace MyApp.ServiceInterface
     using System;
 
     /// <summary>
-    /// Defines the <see cref="PingService" />
+    /// Defines the <see cref="PingService" /> 
     /// </summary>
     public class PingService : Service
     {
-        #region Properties
-
-        #endregion
-
-        #region Methods
+        #region Public Methods
 
         /// <summary>
-        /// The Any
+        /// The Any 
         /// </summary>
-        /// <param name="request">The <see cref="PingRequest"/></param>
-        /// <returns>The <see cref="object"/></returns>
+        /// <param name="request">
+        /// The <see cref="PingRequest" /> 
+        /// </param>
+        /// <returns>
+        /// The <see cref="object" /> 
+        /// </returns>
         public object Any(PingRequest request)
         {
             return new PingResponse
@@ -35,10 +31,14 @@ namespace MyApp.ServiceInterface
         }
 
         /// <summary>
-        /// The Get
+        /// The Get 
         /// </summary>
-        /// <param name="request">The <see cref="PingRequest"/></param>
-        /// <returns>The <see cref="object"/></returns>
+        /// <param name="request">
+        /// The <see cref="PingRequest" /> 
+        /// </param>
+        /// <returns>
+        /// The <see cref="object" /> 
+        /// </returns>
         public object Get(PingRequest request)
         {
             return new PingResponse
@@ -49,10 +49,14 @@ namespace MyApp.ServiceInterface
         }
 
         /// <summary>
-        /// The Post
+        /// The Post 
         /// </summary>
-        /// <param name="request">The <see cref="PingRequest"/></param>
-        /// <returns>The <see cref="object"/></returns>
+        /// <param name="request">
+        /// The <see cref="PingRequest" /> 
+        /// </param>
+        /// <returns>
+        /// The <see cref="object" /> 
+        /// </returns>
         public object Post(PingRequest request)
         {
             return new PingResponse
@@ -64,10 +68,14 @@ namespace MyApp.ServiceInterface
         }
 
         /// <summary>
-        /// The Put
+        /// The Put 
         /// </summary>
-        /// <param name="request">The <see cref="PingRequest"/></param>
-        /// <returns>The <see cref="object"/></returns>
+        /// <param name="request">
+        /// The <see cref="PingRequest" /> 
+        /// </param>
+        /// <returns>
+        /// The <see cref="object" /> 
+        /// </returns>
         public object Put(PingRequest request)
         {
             return new PingResponse
@@ -78,6 +86,6 @@ namespace MyApp.ServiceInterface
             };
         }
 
-        #endregion
+        #endregion Public Methods
     }
 }
