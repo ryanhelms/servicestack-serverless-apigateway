@@ -9,12 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="2.0.1" />
-    <PackageReference Include="Enumis.Utilities.Api" Version="3.0.0-unstable0308" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.1" />
     <PackageReference Include="ServiceStack" Version="5.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Enumis\NuGet Packages\Enumis.Utilities.API\src\Enumis.Utilities.API\Enumis.Utilities.API.csproj" />
     <ProjectReference Include="..\MyApp.ServiceInterface\MyApp.ServiceInterface.csproj" />
     <ProjectReference Include="..\MyApp.ServiceModel\MyApp.ServiceModel.csproj" />
   </ItemGroup>

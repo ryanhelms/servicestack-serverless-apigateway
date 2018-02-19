@@ -33,8 +33,8 @@ namespace MyApp.Tests
         public IntegrationTest()
         {
             appHost = new AppHost()
-                .Init()
-                .Start(BaseUri);
+            .Init()
+            .Start(BaseUri);
         }
 
         #endregion Public Constructors
@@ -77,8 +77,8 @@ namespace MyApp.Tests
         {
             var client = CreateClient();
 
-            var response = client.Post(new PingRequest { Payload = "Some data" });
-
+            var response = client.Post(new PingRequest {Payload = "Some data"});
+            
             Assert.That(response.Payload, Is.EqualTo("Some data"));
         }
 

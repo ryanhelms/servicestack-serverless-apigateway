@@ -1,0 +1,46 @@
+{
+    "resource": "$context.resourcePath",
+    "path": "$context.path",
+    "httpMethod": "$context.httpMethod",
+    "headers": {
+        #foreach($header in $input.params().header.keySet())
+        "$header": "$util.escapeJavaScript($input.params().header.get($header))" #if($foreach.hasNext),#end
+        #end
+    },
+    "requestContext": {
+        "path": "$context.path",
+        "accountId": "$context.identity.accountId",
+        "resourceId": "$context.resourceId",
+        "stage": "$context.stage",
+        "requestId": "$context.requestId",
+        "identity": {
+            "sourceIp": "$context.identity.sourceIp",
+            "userAgent": "$context.identity.userAgent"
+        },
+        "resourcePath": "$context.resourcePath",
+        "httpMethod": "$context.httpMethod",
+        "apiId": "$context.apiId",
+        "authorizer": {
+            "claims": [ 
+                {"aud", "$context.authorizer.aud"}, 
+                {"email", "$context.authorizer.email"}, 
+                {"auth_time", "$context.authorizer.authTime"}, 
+                {"email_verified", "$context.authorizer.emailVerified"}, 
+                {"exp", "$context.authorizer.exp"}, 
+                {"event_id", "$context.authorizer.eventId"}, 
+                {"cognito:groups", "$context.authorizer.cognitoGroups"}, 
+                {"iat", "$context.authorizer.iat"}, 
+                {"iss", "$context.authorizer.iss"}, 
+                {"phone_number", "+$context.authorizer.phoneNumber"}, 
+                {"phone_number_verified", "$context.authorizer.phoneNumberVerified"}, 
+                {"custom:mfa:enabled", "$context.authorizer.customMfaEnabled"}, 
+                {"mfa_type", "$context.authorizer.mfaType"}, 
+                {"sub", "$context.authorizer.sub"},	
+                {"token_use", "$context.authorizer.tokenUse"}, 
+                {"cognito:username", "$context.authorizer.cognitoUsername"}
+            ]
+        }
+    },
+    "body": "{\"createdDate\":1518721107885,\"customerERN\":\"ern::Enumis::Customer::baca7848-a6e2-4820-bdee-6919858e5900\",\"ern\":\"ern::Enumis::Application::4f5c2adf-9971-405e-97ea-18da75fb7470\",\"isNew\":true,\"modifiedDate\":1518813079119,\"state\":\"NewApplication\",\"data\":{\"program\":{\"code\":\"FLOW\",\"name\":\"Flow Card\"},\"form\":{\"dob\":\"1974-12-18\",\"firstName\":\"Charles\",\"gender\":\"Male\",\"lastName\":\"Lindsay\",\"middleName\":\"R\",\"mobilePhone\":\"+17024917734\",\"nationality\":\"840\",\"title\":\"Mr\",\"addresses\":[{\"building\":\"4895\",\"city\":\"Las Vegas\",\"country\":\"840\",\"firstMonthOfResidence\":\"7\",\"firstYearOfResidence\":\"2016\",\"street\":\"Al Carrison St\",\"zipPostcode\":\"89149\"},{\"building\":\"5632\",\"city\":\"Las Vegas\",\"country\":\"840\",\"firstMonthOfResidence\":\"6\",\"firstYearOfResidence\":\"1994\",\"street\":\"Bolton Bay Way\",\"zipPostcode\":\"89149\"}],\"assets\":[{\"link\":\"driverslicense.png\",\"type\":\"DriversLicense\",\"domain\":\"Identification\"}],\"dobDay\":\"18\",\"dobMonth\":\"12\",\"dobYear\":\"1974\"}}}",
+    "isBase64Encoded": false
+}

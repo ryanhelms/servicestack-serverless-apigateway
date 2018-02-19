@@ -26,7 +26,8 @@ namespace MyApp.ServiceInterface
             return new PingResponse
             {
                 Ping = "Any: Pong",
-                UpTime = $"Service has been up for {HostContext.AppHost.StartedAt.Subtract(DateTime.Now)}"
+                Request = request
+                //,UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
             };
         }
 
@@ -44,7 +45,8 @@ namespace MyApp.ServiceInterface
             return new PingResponse
             {
                 Ping = "Get: Pong",
-                UpTime = $"Service has been up for {HostContext.AppHost.StartedAt.Subtract(DateTime.Now)}"
+                Request = request
+                //,UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
             };
         }
 
@@ -61,9 +63,7 @@ namespace MyApp.ServiceInterface
         {
             return new PingResponse
             {
-                Ping = "Post: Pong",
-                Payload = request.Payload,
-                UpTime = $"Service has been up for {HostContext.AppHost.StartedAt.Subtract(DateTime.Now)}"
+                Request = request,
             };
         }
 
@@ -82,7 +82,8 @@ namespace MyApp.ServiceInterface
             {
                 Ping = "Put: Pong",
                 Payload = request.Payload,
-                UpTime = $"Service has been up for {HostContext.AppHost.StartedAt.Subtract(DateTime.Now)}"
+                Request = request,
+                //UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
             };
         }
 

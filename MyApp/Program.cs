@@ -8,6 +8,12 @@ using ServiceStack.Web;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Amazon.Lambda.Serialization.Json;
+using Enumis.Utilities.Extensions;
+using Microsoft.AspNetCore.Http.Internal;
+using ServiceStack.Host;
+using ServiceStack.Host.NetCore;
+using IHttpRequest = ServiceStack.Web.IHttpRequest;
 
 namespace MyApp
 {
@@ -26,9 +32,7 @@ namespace MyApp
         }
 
         #endregion Public Constructors
-
-
-
+        
         #region Public Methods
 
         /// <summary>
@@ -47,24 +51,23 @@ namespace MyApp
             Plugins.Add(new RequestLogsFeature
             {
                 Capacity = 100,
-                LimitToServiceRequests = true,
                 EnableErrorTracking = true,
                 EnableResponseTracking = true
             });
 
             GlobalRequestFilters.Add((request, response, dto) =>
             {
-                Console.WriteLine($"Incoming Request => {(request as IHttpRequest).ToSafeJson()}");
-                Console.WriteLine($"Incoming Dto => {dto.ToSafeJson()}");
-
-                try
-                {
-                    Console.WriteLine($"Original Request=> {request.OriginalRequest.ToSafeJson()}");
-                }
-                catch
-                {
-                    Console.WriteLine($"Original Form => unable to cast");
-                }
+                //Console.WriteLine($"Incoming Request => {(request as IHttpRequest).ToSafeJson()}");
+                //Console.WriteLine($"Incoming Request.GetRawBody().ReadAllText() => {request.GetRawBody()}");
+                //Console.WriteLine($"Incoming NetCoreRequest => {((request as IHttpRequest).OriginalRequest as NetCoreRequest).ToSafeJson()}");
+                //Console.WriteLine($"Incoming Dto => {dto.ToSafeJson()}");
+                
+                //var httpRequest = (request as DefaultHttpRequest);
+                //
+                //if (httpRequest.HttpContext.Items["__route"] is RestPath route)
+                //{
+                //    httpRequest.Body = ServiceStack.Text.JsonSerializer.SerializeToString(httpRequest.Body, route.RequestType).Streamlize();
+                //}
             });
         }
 

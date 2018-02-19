@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using ServiceStack;
 using ServiceStack.Text;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Enumis.DataModel.Extensions;
 using Microsoft.AspNetCore.Hosting.Internal;
 using static Enumis.Utilities.Extensions.LoggingExtensions;
 
@@ -31,8 +33,8 @@ namespace MyApp
         /// </returns>
         public override Task<APIGatewayProxyResponse> FunctionHandlerAsync(APIGatewayProxyRequest request, ILambdaContext lambdaContext)
         {
-            Log("||FunctionHandlerAsync||", "Request:", request.Dump());
-            Log("||FunctionHandlerAsync||", "Context:", lambdaContext.Dump());
+            Log("||FunctionHandlerAsync||", "Request:", request.ToJson());
+            Log("||FunctionHandlerAsync||", "Context:", lambdaContext.ToJson());
 
             try
             {
@@ -65,8 +67,6 @@ namespace MyApp
 
         #endregion Public Methods
 
-
-
         #region Protected Methods
 
         /// <summary>
@@ -82,14 +82,14 @@ namespace MyApp
 
         protected override void PostCreateContext(HostingApplication.Context context, APIGatewayProxyRequest request, ILambdaContext lambdaContext)
         {
-            Log("||PostCreateContext||", "Request:", request.Dump());
-            Log("||PostCreateContext||", "Context:", lambdaContext.Dump());
-            //Log("||PostCreateContext||", "HttpContext.User:", context.HttpContext.User.ToSafeJson());
-            //Log("||PostCreateContext||", "HttpContext.Request:", context.HttpContext.Request.ToSafeJson());
-            //Log("||PostCreateContext||", "HttpContext.Items:", context.HttpContext.Items.ToSafeJson());
-
+            Log("||PostCreateContext||", "Request:", request.ToJson());
+            Log("||PostCreateContext||", "Context:", lambdaContext.ToJson());
             Log("||PostCreateContext||", "Begin Executing : base.PostCreateContext()");
+            Log("||PostCreateContext||", "Request.Body:", request.Body);
 
+            //request.Body = request.Body.Trim().ToJson();
+            //Log("||PostCreateContext||", "Request.Body:", request.Body);
+            
             base.PostCreateContext(context, request, lambdaContext);
 
             Log("||PostCreateContext||", "Finished Executing : base.PostCreateContext()");

@@ -40,7 +40,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "us-east-2.deployments.enumis.co.uk",
-                "S3Key": "serverless/DemoApi/demo/1518793413486-2018-02-16T15:03:33.486Z/DemoApi.zip"
+                "S3Key": "serverless/DemoApi/demo/1518979808044-2018-02-18T18:50:08.044Z/DemoApi.zip"
               },
               "FunctionName": "DemoApi-demo-Proxy",
               "Handler": "MyApp::MyApp.APIGatewayProxy::FunctionHandlerAsync",
@@ -53,14 +53,14 @@
               "ProxyLogGroup"
             ]
           },
-          "ProxyLambdaVersionsxTbB5UeU98ImDgN2VLgPzX9vIDlUQ6qOlZLIKSs8": {
+          "ProxyLambdaVersion3zO8sjhuTlCISBf6DSe1SpG6EyUNDuoqjVNCWgtRjc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ProxyLambdaFunction"
               },
-              "CodeSha256": "uoM7+twl8xY9LCNMbwvyna9suZTQqf2HhDYNIUudTkI="
+              "CodeSha256": "TwOxxuwDYNSjnTbCXmG8qdEP2RY94FP7jQMCj4NrGhc="
             }
           },
           "PingLambdaFunction": {
@@ -68,7 +68,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "us-east-2.deployments.enumis.co.uk",
-                "S3Key": "serverless/DemoApi/demo/1518793413486-2018-02-16T15:03:33.486Z/DemoApi.zip"
+                "S3Key": "serverless/DemoApi/demo/1518979808044-2018-02-18T18:50:08.044Z/DemoApi.zip"
               },
               "FunctionName": "DemoApi-demo-Ping",
               "Handler": "MyApp::MyApp.APIGatewayProxy::FunctionHandlerAsync",
@@ -81,14 +81,14 @@
               "PingLogGroup"
             ]
           },
-          "PingLambdaVersionPD0bwz89m66GVFklc2vsOJjmYE3LZgU06kxJj2lg": {
+          "PingLambdaVersionZSQpJlBClKGMBkrtotGftmVI3IwkUbTLTB93IbCHpk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PingLambdaFunction"
               },
-              "CodeSha256": "uoM7+twl8xY9LCNMbwvyna9suZTQqf2HhDYNIUudTkI="
+              "CodeSha256": "TwOxxuwDYNSjnTbCXmG8qdEP2RY94FP7jQMCj4NrGhc="
             }
           },
           "ApiGatewayRestApi": {
@@ -278,7 +278,7 @@
               "AuthorizationType": "NONE",
               "Integration": {
                 "IntegrationHttpMethod": "POST",
-                "Type": "AWS",
+                "Type": "AWS_PROXY",
                 "Uri": {
                   "Fn::Join": [
                     "",
@@ -297,64 +297,12 @@
                       "/invocations"
                     ]
                   ]
-                },
-                "PassthroughBehavior": "NEVER",
-                "RequestTemplates": {
-                  "application/json": "{ \"httpMethod\" : \"$context.httpMethod\", \"path\": \"$context.path\", \"body\": \"$util.escapeJavaScript($input.body)\" }\n",
-                  "application/x-www-form-urlencoded": "\n    #define( $body )\n      {\n      #foreach( $token in $input.path('$').split('&') )\n        #set( $keyVal = $token.split('=') )\n        #set( $keyValSize = $keyVal.size() )\n        #if( $keyValSize >= 1 )\n          #set( $key = $util.escapeJavaScript($util.urlDecode($keyVal[0])) )\n          #if( $keyValSize >= 2 )\n            #set($val = $util.escapeJavaScript($util.urlDecode($keyVal[1])).replaceAll(\"\\\\'\",\"'\"))\n          #else\n            #set( $val = '' )\n          #end\n          \"$key\": \"$val\"#if($foreach.hasNext),#end\n        #end\n      #end\n      }\n    #end\n\n    \n  #define( $loop )\n    {\n    #foreach($key in $map.keySet())\n        #set( $k = $util.escapeJavaScript($key) )\n        #set( $v = $util.escapeJavaScript($map.get($key)).replaceAll(\"\\\\'\", \"'\") )\n        \"$k\":\n          \"$v\"\n          #if( $foreach.hasNext ) , #end\n    #end\n    }\n  #end\n\n  {\n    \"body\": $body,\n    \"method\": \"$context.httpMethod\",\n    \"principalId\": \"$context.authorizer.principalId\",\n    \"stage\": \"$context.stage\",\n\n    \"cognitoPoolClaims\" : {\n       \n       \"sub\": \"$context.authorizer.claims.sub\"\n    },\n\n    #set( $map = $input.params().header )\n    \"headers\": $loop,\n\n    #set( $map = $input.params().querystring )\n    \"query\": $loop,\n\n    #set( $map = $input.params().path )\n    \"path\": $loop,\n\n    #set( $map = $context.identity )\n    \"identity\": $loop,\n\n    #set( $map = $stageVariables )\n    \"stageVariables\": $loop\n  }\n\n  "
-                },
-                "IntegrationResponses": [
-                  {
-                    "StatusCode": 200,
-                    "SelectionPattern": "",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Credentials": "'true'",
-                      "method.response.header.Access-Control-Allow-Headers": "'*'",
-                      "method.response.header.Access-Control-Allow-Methods": "'*'"
-                    },
-                    "ResponseTemplates": {}
-                  },
-                  {
-                    "StatusCode": 400,
-                    "SelectionPattern": ".*errorMessage.*",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Credentials": "'true'",
-                      "method.response.header.Access-Control-Allow-Headers": "'*'",
-                      "method.response.header.Access-Control-Allow-Methods": "'*'"
-                    },
-                    "ResponseTemplates": {
-                      "application/json": "#set ($errorMessageObj = $input.path('$.errorMessage')) $errorMessageObj\n"
-                    }
-                  }
-                ]
-              },
-              "MethodResponses": [
-                {
-                  "ResponseParameters": {
-                    "method.response.header.Access-Control-Allow-Origin": true,
-                    "method.response.header.Access-Control-Allow-Credentials": true,
-                    "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true
-                  },
-                  "ResponseModels": {},
-                  "StatusCode": 200
-                },
-                {
-                  "ResponseParameters": {
-                    "method.response.header.Access-Control-Allow-Origin": true,
-                    "method.response.header.Access-Control-Allow-Credentials": true,
-                    "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true
-                  },
-                  "ResponseModels": {},
-                  "StatusCode": 400
                 }
-              ]
+              },
+              "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1518793413740": {
+          "ApiGatewayDeployment1518979808265": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -441,13 +389,13 @@
           "ProxyLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ProxyLambdaVersionsxTbB5UeU98ImDgN2VLgPzX9vIDlUQ6qOlZLIKSs8"
+              "Ref": "ProxyLambdaVersion3zO8sjhuTlCISBf6DSe1SpG6EyUNDuoqjVNCWgtRjc"
             }
           },
           "PingLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PingLambdaVersionPD0bwz89m66GVFklc2vsOJjmYE3LZgU06kxJj2lg"
+              "Ref": "PingLambdaVersionZSQpJlBClKGMBkrtotGftmVI3IwkUbTLTB93IbCHpk"
             }
           },
           "ServiceEndpoint": {
@@ -537,32 +485,7 @@
                 ],
                 "allowCredentials": false
               },
-              "integration": "AWS",
-              "request": {
-                "template": {
-                  "application/json": "{ \"httpMethod\" : \"$context.httpMethod\", \"path\": \"$context.path\", \"body\": \"$util.escapeJavaScript($input.body)\" }\n"
-                },
-                "passThrough": "NEVER"
-              },
-              "response": {
-                "headers": {
-                  "Access-Control-Allow-Origin": "'*'",
-                  "Access-Control-Allow-Credentials": "'true'",
-                  "Access-Control-Allow-Headers": "'*'",
-                  "Access-Control-Allow-Methods": "'*'"
-                },
-                "statusCodes": {
-                  "200": {
-                    "pattern": ""
-                  },
-                  "400": {
-                    "pattern": ".*errorMessage.*",
-                    "template": {
-                      "application/json": "#set ($errorMessageObj = $input.path('$.errorMessage')) $errorMessageObj\n"
-                    }
-                  }
-                }
-              }
+              "integration": "AWS_PROXY"
             }
           }
         ],
@@ -574,7 +497,7 @@
     "artifact": "C:\\Work\\Temp\\servicestack-serverless-apigateway\\MyApp\\.serverless\\DemoApi.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/DemoApi/demo/1518793413486-2018-02-16T15:03:33.486Z",
+    "artifactDirectoryName": "serverless/DemoApi/demo/1518979808044-2018-02-18T18:50:08.044Z",
     "artifact": "DemoApi.zip"
   }
 }
