@@ -11,16 +11,16 @@ namespace MyApp.Tests
     /// </summary>
     public class UnitTest
     {
-        #region Private Fields
+        #region Fields
 
         /// <summary>
         /// Defines the appHost 
         /// </summary>
         private readonly ServiceStackHost appHost;
 
-        #endregion Private Fields
+        #endregion
 
-        #region Public Constructors
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnitTest" /> class. 
@@ -31,11 +31,9 @@ namespace MyApp.Tests
             appHost.Container.AddTransient<MyServices>();
         }
 
-        #endregion Public Constructors
+        #endregion
 
-
-
-        #region Public Methods
+        #region Methods
 
         /// <summary>
         /// The Can_call_MyServices 
@@ -56,6 +54,6 @@ namespace MyApp.Tests
         [OneTimeTearDown]
         public void OneTimeTearDown() => appHost.Dispose();
 
-        #endregion Public Methods
+        #endregion
     }
 }

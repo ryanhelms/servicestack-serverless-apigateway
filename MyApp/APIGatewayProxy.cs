@@ -1,13 +1,10 @@
 ﻿using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using Microsoft.AspNetCore.Hosting;
-using ServiceStack;
-using ServiceStack.Text;
-using System;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Enumis.DataModel.Extensions;
 using Microsoft.AspNetCore.Hosting.Internal;
+using ServiceStack;
+using System;
+using System.Threading.Tasks;
 using static Enumis.Utilities.Extensions.LoggingExtensions;
 
 namespace MyApp
@@ -17,7 +14,7 @@ namespace MyApp
     /// </summary>
     public class APIGatewayProxy : Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction
     {
-        #region Public Methods
+        #region Methods
 
         /// <summary>
         /// The FunctionHandlerAsync 
@@ -65,10 +62,6 @@ namespace MyApp
             .AsTaskResult();
         }
 
-        #endregion Public Methods
-
-        #region Protected Methods
-
         /// <summary>
         /// The Init 
         /// </summary>
@@ -80,6 +73,12 @@ namespace MyApp
             builder.UseStartup<Startup>().UseApiGateway();
         }
 
+        /// <summary>
+        /// The PostCreateContext
+        /// </summary>
+        /// <param name="context">The <see cref="HostingApplication.Context"/></param>
+        /// <param name="request">The <see cref="APIGatewayProxyRequest"/></param>
+        /// <param name="lambdaContext">The <see cref="ILambdaContext"/></param>
         protected override void PostCreateContext(HostingApplication.Context context, APIGatewayProxyRequest request, ILambdaContext lambdaContext)
         {
             Log("||PostCreateContext||", "Request:", request.ToJson());
@@ -89,12 +88,12 @@ namespace MyApp
 
             //request.Body = request.Body.Trim().ToJson();
             //Log("||PostCreateContext||", "Request.Body:", request.Body);
-            
+
             base.PostCreateContext(context, request, lambdaContext);
 
             Log("||PostCreateContext||", "Finished Executing : base.PostCreateContext()");
         }
 
-        #endregion Protected Methods
+        #endregion
     }
 }

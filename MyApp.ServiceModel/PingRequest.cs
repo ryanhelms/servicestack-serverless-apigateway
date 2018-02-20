@@ -1,6 +1,6 @@
-﻿using System.IO;
-using ServiceStack;
+﻿using ServiceStack;
 using ServiceStack.Web;
+using System.IO;
 
 namespace MyApp.ServiceModel
 {
@@ -8,18 +8,16 @@ namespace MyApp.ServiceModel
     /// Defines the <see cref="PingRequest" /> 
     /// </summary>
     [Route("/ping")]
-    public class PingRequest : IReturn<PingResponse>, IRequiresRequestStream
+    public class PingRequest : IReturn<PingResponse>
     {
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// Gets or sets the Payload 
         /// </summary>
         public string Payload { get; set; }
 
-        #endregion Public Properties
-
-        public Stream RequestStream { get; set; }
+        #endregion
     }
 
     /// <summary>
@@ -27,7 +25,7 @@ namespace MyApp.ServiceModel
     /// </summary>
     public class PingResponse
     {
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// Gets or sets the Payload 
@@ -35,7 +33,7 @@ namespace MyApp.ServiceModel
         public string Payload { get; set; }
 
         /// <summary>
-        /// Gets or sets the Ping 
+        /// Gets or sets the Payload 
         /// </summary>
         public string Ping { get; set; }
 
@@ -45,15 +43,10 @@ namespace MyApp.ServiceModel
         public ResponseStatus ResponseStatus { get; set; }
 
         /// <summary>
-        /// Gets or sets the UpTime 
+        /// Gets or sets the UpTime
         /// </summary>
         public string UpTime { get; set; }
 
-        public PingRequest Request { get; set; }
-        public object RawRequest { get; set; }
-
-        public object RequestStream { get; set; }
-
-        #endregion Public Properties
+        #endregion
     }
 }

@@ -1,16 +1,16 @@
-﻿using MyApp.ServiceModel;
+﻿using System;
+using MyApp.ServiceModel;
 
 namespace MyApp.ServiceInterface
 {
     using ServiceStack;
-    using System;
 
     /// <summary>
     /// Defines the <see cref="PingService" /> 
     /// </summary>
     public class PingService : Service
     {
-        #region Public Methods
+        #region Methods
 
         /// <summary>
         /// The Any 
@@ -25,9 +25,7 @@ namespace MyApp.ServiceInterface
         {
             return new PingResponse
             {
-                Ping = "Any: Pong",
-                Request = request
-                //,UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
+                UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
             };
         }
 
@@ -45,8 +43,7 @@ namespace MyApp.ServiceInterface
             return new PingResponse
             {
                 Ping = "Get: Pong",
-                Request = request
-                //,UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
+                UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
             };
         }
 
@@ -63,7 +60,8 @@ namespace MyApp.ServiceInterface
         {
             return new PingResponse
             {
-                Request = request,
+                Ping = $"Post: Pong => Request: {request.ToJson()}",
+                UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
             };
         }
 
@@ -80,13 +78,11 @@ namespace MyApp.ServiceInterface
         {
             return new PingResponse
             {
-                Ping = "Put: Pong",
-                Payload = request.Payload,
-                Request = request,
-                //UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
+                Ping = $"Put: Pong => Request: {request.ToJson()}",
+                UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
             };
         }
 
-        #endregion Public Methods
+        #endregion
     }
 }

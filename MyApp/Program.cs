@@ -4,16 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MyApp.ServiceInterface;
 using ServiceStack;
-using ServiceStack.Web;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Amazon.Lambda.Serialization.Json;
-using Enumis.Utilities.Extensions;
-using Microsoft.AspNetCore.Http.Internal;
-using ServiceStack.Host;
-using ServiceStack.Host.NetCore;
-using IHttpRequest = ServiceStack.Web.IHttpRequest;
 
 namespace MyApp
 {
@@ -22,7 +15,7 @@ namespace MyApp
     /// </summary>
     public class AppHost : AppHostBase
     {
-        #region Public Constructors
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppHost" /> class. 
@@ -31,9 +24,9 @@ namespace MyApp
         {
         }
 
-        #endregion Public Constructors
-        
-        #region Public Methods
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// The Configure 
@@ -61,7 +54,7 @@ namespace MyApp
                 //Console.WriteLine($"Incoming Request.GetRawBody().ReadAllText() => {request.GetRawBody()}");
                 //Console.WriteLine($"Incoming NetCoreRequest => {((request as IHttpRequest).OriginalRequest as NetCoreRequest).ToSafeJson()}");
                 //Console.WriteLine($"Incoming Dto => {dto.ToSafeJson()}");
-                
+
                 //var httpRequest = (request as DefaultHttpRequest);
                 //
                 //if (httpRequest.HttpContext.Items["__route"] is RestPath route)
@@ -71,7 +64,7 @@ namespace MyApp
             });
         }
 
-        #endregion Public Methods
+        #endregion
     }
 
     /// <summary>
@@ -79,7 +72,7 @@ namespace MyApp
     /// </summary>
     public class Program
     {
-        #region Public Methods
+        #region Methods
 
         /// <summary>
         /// The Main 
@@ -99,7 +92,7 @@ namespace MyApp
             host.Run();
         }
 
-        #endregion Public Methods
+        #endregion
     }
 
     /// <summary>
@@ -107,7 +100,7 @@ namespace MyApp
     /// </summary>
     public class Startup
     {
-        #region Public Methods
+        #region Methods
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// <summary>
@@ -141,6 +134,6 @@ namespace MyApp
         {
         }
 
-        #endregion Public Methods
+        #endregion
     }
 }

@@ -8,7 +8,7 @@ namespace MyApp.ServiceInterface
     /// </summary>
     public class MyServices : Service
     {
-        #region Public Methods
+        #region Methods
 
         /// <summary>
         /// The Any 
@@ -24,6 +24,6 @@ namespace MyApp.ServiceInterface
             return new HelloResponse { Result = $"Hello, {request.Name}!" };
         }
 
-        #endregion Public Methods
+        #endregion
     }
 }

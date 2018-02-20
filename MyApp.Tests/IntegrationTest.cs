@@ -11,21 +11,25 @@ namespace MyApp.Tests
     /// </summary>
     public class IntegrationTest
     {
-        #region Private Fields
+        #region Constants
 
         /// <summary>
         /// Defines the BaseUri 
         /// </summary>
         private const string BaseUri = "http://localhost:2000/";
 
+        #endregion
+
+        #region Fields
+
         /// <summary>
         /// Defines the appHost 
         /// </summary>
         private readonly ServiceStackHost appHost;
 
-        #endregion Private Fields
+        #endregion
 
-        #region Public Constructors
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IntegrationTest" /> class. 
@@ -37,11 +41,9 @@ namespace MyApp.Tests
             .Start(BaseUri);
         }
 
-        #endregion Public Constructors
+        #endregion
 
-
-
-        #region Public Methods
+        #region Methods
 
         /// <summary>
         /// The Can_call_Hello_Service 
@@ -50,7 +52,6 @@ namespace MyApp.Tests
         public void Can_call_Hello_Service()
         {
             var client = CreateClient();
-
             var response = client.Get(new Hello { Name = "World" });
 
             Assert.That(response.Result, Is.EqualTo("Hello, World!"));
@@ -63,7 +64,6 @@ namespace MyApp.Tests
         public void Can_call_Ping_Service_Via_Get()
         {
             var client = CreateClient();
-
             var response = client.Get(new PingRequest { Payload = "Some data" });
 
             Assert.That(response.Payload, Is.EqualTo(null));
@@ -76,10 +76,10 @@ namespace MyApp.Tests
         public void Can_call_Ping_Service_Via_Post()
         {
             var client = CreateClient();
+            var request = new PingRequest {Payload = "Some data"};
+            var response = client.Post(request);
 
-            var response = client.Post(new PingRequest {Payload = "Some data"});
-            
-            Assert.That(response.Payload, Is.EqualTo("Some data"));
+            Assert.That(response.Ping, Contains.Substring(request.ToJson()));
         }
 
         /// <summary>
@@ -96,18 +96,14 @@ namespace MyApp.Tests
         [OneTimeTearDown]
         public void OneTimeTearDown() => appHost.Dispose();
 
-        #endregion Public Methods
-
-
-
-        #region Private Classes
+        #endregion
 
         /// <summary>
         /// Defines the <see cref="AppHost" /> 
         /// </summary>
         private class AppHost : AppSelfHostBase
         {
-            #region Public Constructors
+            #region Constructors
 
             /// <summary>
             /// Initializes a new instance of the <see cref="AppHost" /> class. 
@@ -116,11 +112,9 @@ namespace MyApp.Tests
             {
             }
 
-            #endregion Public Constructors
+            #endregion
 
-
-
-            #region Public Methods
+            #region Methods
 
             /// <summary>
             /// The Configure 
@@ -132,9 +126,7 @@ namespace MyApp.Tests
             {
             }
 
-            #endregion Public Methods
+            #endregion
         }
-
-        #endregion Private Classes
     }
 }

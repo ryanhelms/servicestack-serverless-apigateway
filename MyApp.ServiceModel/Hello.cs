@@ -9,14 +9,14 @@ namespace MyApp.ServiceModel
     [Route("/hello/{Name}")]
     public class Hello : IReturn<HelloResponse>
     {
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// Gets or sets the Name 
         /// </summary>
         public string Name { get; set; }
 
-        #endregion Public Properties
+        #endregion
     }
 
     /// <summary>
@@ -24,13 +24,13 @@ namespace MyApp.ServiceModel
     /// </summary>
     public class HelloResponse
     {
-        #region Public Properties
+        #region Properties
 
         /// <summary>
         /// Gets or sets the Result 
         /// </summary>
         public string Result { get; set; }
 
-        #endregion Public Properties
+        #endregion
     }
 }
