@@ -7,7 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="2.0.1" />
     <PackageReference Include="Enumis.Utilities.Extensions" Version="3.0.0-unstable0108" />
-    <PackageReference Include="ServiceStack" Version="5.0.3" />
   </ItemGroup>
 
   <ItemGroup>

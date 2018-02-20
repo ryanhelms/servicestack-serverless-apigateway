@@ -7,11 +7,11 @@ plugins:
 provider: 
   runtime: dotnetcore2.0 
   name: aws 
-  timeout: ${s3:${self:custom.globalConfig}/timeout.var} 
-  role: ${s3:${self:custom.globalConfig}/role.var} 
+  timeout: 10
+  role: ${s3:${self:custom.globalConfig}/role.var}                                  # Change to a privileged role 
   logRetentionInDays: 7
-  memorySize: ${s3:${self:custom.globalConfig}/memorySize.var} 
-  deploymentBucket: ${s3:${self:custom.globalConfig}/deploymentBucket.var} 
+  memorySize: 128
+  deploymentBucket: ${s3:${self:custom.globalConfig}/deploymentBucket.var}          # Change me to a temporary S3 bucket to hold deployment files
   versionFunctions: true
  
 custom:
