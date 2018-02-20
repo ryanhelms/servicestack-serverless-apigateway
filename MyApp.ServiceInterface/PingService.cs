@@ -5,6 +5,8 @@ namespace MyApp.ServiceInterface
 {
     using ServiceStack;
 
+    using static Enumis.Utilities.Extensions.LoggingExtensions;
+
     /// <summary>
     /// Defines the <see cref="PingService" /> 
     /// </summary>
@@ -58,6 +60,8 @@ namespace MyApp.ServiceInterface
         /// </returns>
         public object Post(PingRequest request)
         {
+            Log("||Post||", "PingRequest:", request.ToJson());
+
             return new PingResponse
             {
                 Ping = $"Post: Pong => Request: {request.ToJson()}",
@@ -76,6 +80,10 @@ namespace MyApp.ServiceInterface
         /// </returns>
         public object Put(PingRequest request)
         {
+            request = (Request.GetRawBody() ?? "{ }").FromJson<PingRequest>();
+
+            Log("||Put||", "PingRequest:", request.ToJson());
+
             return new PingResponse
             {
                 Ping = $"Put: Pong => Request: {request.ToJson()}",
