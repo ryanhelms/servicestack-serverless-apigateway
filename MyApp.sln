@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "requestTemplates", "request
 		serverless\requestTemplates\request.tmpl.json = serverless\requestTemplates\request.tmpl.json
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enumis.Utilities.API", "..\..\Enumis\NuGet Packages\Enumis.Utilities.API\src\Enumis.Utilities.API\Enumis.Utilities.API.csproj", "{8DD96430-B081-46BF-9A71-0EA5BF5B6B5D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,10 +40,6 @@ Global
 		{455EC1EF-134F-4CD4-9C78-E813E4E6D8F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{455EC1EF-134F-4CD4-9C78-E813E4E6D8F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{455EC1EF-134F-4CD4-9C78-E813E4E6D8F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8DD96430-B081-46BF-9A71-0EA5BF5B6B5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DD96430-B081-46BF-9A71-0EA5BF5B6B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8DD96430-B081-46BF-9A71-0EA5BF5B6B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8DD96430-B081-46BF-9A71-0EA5BF5B6B5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
