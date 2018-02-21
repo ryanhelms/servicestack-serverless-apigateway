@@ -25,6 +25,8 @@ namespace MyApp.ServiceInterface
         /// </returns>
         public object Any(PingRequest request)
         {
+            Log("||Any||", "PingRequest:", request.ToJson());
+
             return new PingResponse
             {
                 UpTime = $"Service has been up for {DateTime.Now.Subtract(HostContext.AppHost.StartedAt)}"
@@ -80,8 +82,6 @@ namespace MyApp.ServiceInterface
         /// </returns>
         public object Put(PingRequest request)
         {
-            request = (Request.GetRawBody() ?? "{ }").FromJson<PingRequest>();
-
             Log("||Put||", "PingRequest:", request.ToJson());
 
             return new PingResponse

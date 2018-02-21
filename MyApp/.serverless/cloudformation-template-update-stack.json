@@ -21,7 +21,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "us-east-2.deployments.enumis.co.uk",
-          "S3Key": "serverless/DemoApi/demo/1519194557311-2018-02-21T06:29:17.311Z/DemoApi.zip"
+          "S3Key": "serverless/DemoApi/demo/1519196827549-2018-02-21T07:07:07.549Z/DemoApi.zip"
         },
         "FunctionName": "DemoApi-demo-Proxy",
         "Handler": "MyApp::MyApp.APIGatewayProxy::FunctionHandlerAsync",
@@ -34,14 +34,14 @@
         "ProxyLogGroup"
       ]
     },
-    "ProxyLambdaVersionAOi5ftzX0HyIJyuJE5iVzz7xY1wMnM67bK1DB1ifsUw": {
+    "ProxyLambdaVersionW6U2cIVcmvt74Q2MMOtZae0amCXEVMVevtmYgxkgIOM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ProxyLambdaFunction"
         },
-        "CodeSha256": "C/VtRwHEvPNjHkpL8b7cxG0oelAEclCAYtvegDwtPcE="
+        "CodeSha256": "ykqCa3dPDNdngKCUiwhOCWf/vzk9EV3gtzsyfTBje7s="
       }
     },
     "PingLambdaFunction": {
@@ -49,7 +49,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "us-east-2.deployments.enumis.co.uk",
-          "S3Key": "serverless/DemoApi/demo/1519194557311-2018-02-21T06:29:17.311Z/DemoApi.zip"
+          "S3Key": "serverless/DemoApi/demo/1519196827549-2018-02-21T07:07:07.549Z/DemoApi.zip"
         },
         "FunctionName": "DemoApi-demo-Ping",
         "Handler": "MyApp::MyApp.APIGatewayProxy::FunctionHandlerAsync",
@@ -62,14 +62,14 @@
         "PingLogGroup"
       ]
     },
-    "PingLambdaVersion2o2lXQOGvLtr0JDi0oJAuYiB4uFSclsPt7uPwPw": {
+    "PingLambdaVersionztQuBfFScznVDUAWmKOV2oi2663h1Pi3DHuVZFbjM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PingLambdaFunction"
         },
-        "CodeSha256": "C/VtRwHEvPNjHkpL8b7cxG0oelAEclCAYtvegDwtPcE="
+        "CodeSha256": "ykqCa3dPDNdngKCUiwhOCWf/vzk9EV3gtzsyfTBje7s="
       }
     },
     "ApiGatewayRestApi": {
@@ -283,7 +283,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1519194557517": {
+    "ApiGatewayDeployment1519196827781": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -370,13 +370,13 @@
     "ProxyLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ProxyLambdaVersionAOi5ftzX0HyIJyuJE5iVzz7xY1wMnM67bK1DB1ifsUw"
+        "Ref": "ProxyLambdaVersionW6U2cIVcmvt74Q2MMOtZae0amCXEVMVevtmYgxkgIOM"
       }
     },
     "PingLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PingLambdaVersion2o2lXQOGvLtr0JDi0oJAuYiB4uFSclsPt7uPwPw"
+        "Ref": "PingLambdaVersionztQuBfFScznVDUAWmKOV2oi2663h1Pi3DHuVZFbjM"
       }
     },
     "ServiceEndpoint": {
