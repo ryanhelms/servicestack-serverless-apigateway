@@ -86,6 +86,12 @@ namespace MyApp
             Log("||PostCreateContext||", "Begin Executing : base.PostCreateContext()");
             Log("||PostCreateContext||", "Request.Body:", request.Body);
 
+            //if (request.HttpMethod == "POST" || request.HttpMethod == "PUT")
+            //{
+            //    request.Headers.Add("Content-Length", (request?.Body?.Length ?? 0).ToString());
+            //    Log("||PostCreateContext||", $"Updated Request Content-Length to {(request?.Body?.Length ?? 0)}");
+            //}
+            
             //request.Body = request.Body.Trim().ToJson();
             //Log("||PostCreateContext||", "Request.Body:", request.Body);
 

@@ -21,27 +21,27 @@
       "Properties": {
         "Code": {
           "S3Bucket": "us-east-2.deployments.enumis.co.uk",
-          "S3Key": "serverless/DemoApi/demo/1519101555222-2018-02-20T04:39:15.222Z/DemoApi.zip"
+          "S3Key": "serverless/DemoApi/demo/1519194557311-2018-02-21T06:29:17.311Z/DemoApi.zip"
         },
         "FunctionName": "DemoApi-demo-Proxy",
         "Handler": "MyApp::MyApp.APIGatewayProxy::FunctionHandlerAsync",
-        "MemorySize": 256,
+        "MemorySize": 128,
         "Role": "arn:aws:iam::213343987366:role/enumis-lambda-executor",
         "Runtime": "dotnetcore2.0",
-        "Timeout": 15
+        "Timeout": 10
       },
       "DependsOn": [
         "ProxyLogGroup"
       ]
     },
-    "ProxyLambdaVersionaYI3Oxrf0rn8SpA1lhXvVnURYastUxqafMaaWHe4": {
+    "ProxyLambdaVersionAOi5ftzX0HyIJyuJE5iVzz7xY1wMnM67bK1DB1ifsUw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ProxyLambdaFunction"
         },
-        "CodeSha256": "PM6an9f970jewxSapT2rt8dJ4GppF0/qJtkvcxXXvdg="
+        "CodeSha256": "C/VtRwHEvPNjHkpL8b7cxG0oelAEclCAYtvegDwtPcE="
       }
     },
     "PingLambdaFunction": {
@@ -49,27 +49,27 @@
       "Properties": {
         "Code": {
           "S3Bucket": "us-east-2.deployments.enumis.co.uk",
-          "S3Key": "serverless/DemoApi/demo/1519101555222-2018-02-20T04:39:15.222Z/DemoApi.zip"
+          "S3Key": "serverless/DemoApi/demo/1519194557311-2018-02-21T06:29:17.311Z/DemoApi.zip"
         },
         "FunctionName": "DemoApi-demo-Ping",
         "Handler": "MyApp::MyApp.APIGatewayProxy::FunctionHandlerAsync",
-        "MemorySize": 256,
+        "MemorySize": 128,
         "Role": "arn:aws:iam::213343987366:role/enumis-lambda-executor",
         "Runtime": "dotnetcore2.0",
-        "Timeout": 15
+        "Timeout": 10
       },
       "DependsOn": [
         "PingLogGroup"
       ]
     },
-    "PingLambdaVersiontPjviZj6ZL8IqM7aWEjCOVLDf0GeYcz8LG4VXjYjsc": {
+    "PingLambdaVersion2o2lXQOGvLtr0JDi0oJAuYiB4uFSclsPt7uPwPw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "PingLambdaFunction"
         },
-        "CodeSha256": "PM6an9f970jewxSapT2rt8dJ4GppF0/qJtkvcxXXvdg="
+        "CodeSha256": "C/VtRwHEvPNjHkpL8b7cxG0oelAEclCAYtvegDwtPcE="
       }
     },
     "ApiGatewayRestApi": {
@@ -283,7 +283,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1519101555433": {
+    "ApiGatewayDeployment1519194557517": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -370,13 +370,13 @@
     "ProxyLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ProxyLambdaVersionaYI3Oxrf0rn8SpA1lhXvVnURYastUxqafMaaWHe4"
+        "Ref": "ProxyLambdaVersionAOi5ftzX0HyIJyuJE5iVzz7xY1wMnM67bK1DB1ifsUw"
       }
     },
     "PingLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "PingLambdaVersiontPjviZj6ZL8IqM7aWEjCOVLDf0GeYcz8LG4VXjYjsc"
+        "Ref": "PingLambdaVersion2o2lXQOGvLtr0JDi0oJAuYiB4uFSclsPt7uPwPw"
       }
     },
     "ServiceEndpoint": {

@@ -38,30 +38,16 @@ namespace MyApp
         {
             SetConfig(new HostConfig
             {
-                AdminAuthSecret = "1"
+                AdminAuthSecret = "1",
+                DebugMode = true
             });
 
-            Plugins.Add(new RequestLogsFeature
-            {
-                Capacity = 100,
-                EnableErrorTracking = true,
-                EnableResponseTracking = true
-            });
-
-            GlobalRequestFilters.Add((request, response, dto) =>
-            {
-                //Console.WriteLine($"Incoming Request => {(request as IHttpRequest).ToSafeJson()}");
-                //Console.WriteLine($"Incoming Request.GetRawBody().ReadAllText() => {request.GetRawBody()}");
-                //Console.WriteLine($"Incoming NetCoreRequest => {((request as IHttpRequest).OriginalRequest as NetCoreRequest).ToSafeJson()}");
-                //Console.WriteLine($"Incoming Dto => {dto.ToSafeJson()}");
-
-                //var httpRequest = (request as DefaultHttpRequest);
-                //
-                //if (httpRequest.HttpContext.Items["__route"] is RestPath route)
-                //{
-                //    httpRequest.Body = ServiceStack.Text.JsonSerializer.SerializeToString(httpRequest.Body, route.RequestType).Streamlize();
-                //}
-            });
+            Plugins.Add(new RequestLogsFeature());
+            //Plugins.Add(new RequestInfoFeature());
+            //Plugins.Add(new TemplatePagesFeature
+            //{
+            //    EnableDebugTemplate = true
+            //});
         }
 
         #endregion
@@ -118,7 +104,7 @@ namespace MyApp
 
             app.Run(context =>
             {
-                context.Response.Redirect("/metadata");
+                context.Response.Redirect("/demo/metadata");
                 return Task.FromResult(0);
             });
         }
